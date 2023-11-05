@@ -20,7 +20,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import instagram from "@/assets/instagram.png";
 import arrowdown from "@/assets/arrowdown.png";
-import ProfileButton from "./ui/ProfileButton";
+import LoginButton from "./ui/LoginButton";
 
 const menu = [
   { href: "/", icon: <HomeIcon />, clickedIcon: <HomeFillIcon /> },
@@ -69,9 +69,9 @@ export default function Navbar() {
               ))}
               <li>
                 {session ? (
-                  <ProfileButton text="Sign Out" onClick={() => signOut()} />
+                  <LoginButton text="Sign Out" onClick={() => signOut()} />
                 ) : (
-                  <ProfileButton text="Sign in" onClick={() => signIn()} />
+                  <LoginButton text="Sign in" onClick={() => signIn()} />
                 )}
               </li>
             </ul>
