@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+
 import {
   HeartFillIcon,
   HeartIcon,
@@ -30,6 +32,8 @@ const menu = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
+
   return (
     <div className=" max-w-screen-xl mx-auto">
       <div className="flex justify-between items-center h-16 px-2">
@@ -64,7 +68,11 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <ProfileButton text="Sign in" onClick={() => {}} />
+                {session ? (
+                  <ProfileButton text="Sign Out" onClick={() => signOut()} />
+                ) : (
+                  <ProfileButton text="Sign in" onClick={() => signIn()} />
+                )}
               </li>
             </ul>
           </nav>
