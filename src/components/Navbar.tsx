@@ -35,7 +35,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   return (
-    <div className=" max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto">
       <div className="flex justify-between items-center h-16 px-2">
         <div className="flex">
           <div className="w-28">
@@ -47,7 +47,7 @@ export default function Navbar() {
             <Image src={arrowdown} alt="arrow icon" />
           </div>
         </div>
-        <div className="hidden w-72 sm:flex relative">
+        <div className="hidden sm:flex relative w-72 ">
           <div className="absolute flex items-center text-gray-400 w-6 h-full ml-2">
             <SearchInputIcon />
           </div>
@@ -61,7 +61,12 @@ export default function Navbar() {
           <nav>
             <ul className="flex space-x-4 items-center p-4">
               {menu.map(({ href, clickedIcon, icon }) => (
-                <li key={href}>
+                <li
+                  key={href}
+                  className={`${
+                    href === "/new" ? "sm:flex" : "hidden sm:flex"
+                  }`}
+                >
                   <Link href={href}>
                     {pathname === href ? clickedIcon : icon}
                   </Link>
