@@ -18,6 +18,10 @@ const authOptions = {
       clientSecret: process.env.NAVER_CLIENT_SECRET || ''
     })
   ],
+  pages: {
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+  }
 }
 const handler = NextAuth(authOptions)
 
