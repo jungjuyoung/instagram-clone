@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import NaverProvider from "next-auth/providers/naver";
 import KakaoProvider from "next-auth/providers/kakao";
+import { addUser } from "@/service/user";
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -19,7 +20,16 @@ const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
+    async signIn({ user: { id, name, image, email } }) {
+      if (!email) {
+        return false
+      }
+
+      addUser({ id, name: name || '', email, username: email?.split('@')[0] })
+      return true
+    },
     async session({ session }) {
+      console.log('session', session)
       const user = session?.user
       if (user) {
         session.user = {
