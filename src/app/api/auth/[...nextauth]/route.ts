@@ -1,9 +1,9 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import NaverProvider from "next-auth/providers/naver";
 import KakaoProvider from "next-auth/providers/kakao";
 
-const authOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_OAUTH_ID || '',
@@ -18,9 +18,21 @@ const authOptions = {
       clientSecret: process.env.NAVER_CLIENT_SECRET || ''
     })
   ],
+  callbacks: {
+    async session({ session }) {
+      const user = session?.user
+      console.log('route session', session)
+      if (user) {
+        session.user = {
+          ...user,
+          username: user.email?.split('@')[0] || '',
+        }
+      }
+      return session
+    }
+  },
   pages: {
     signIn: '/auth/signin',
-    signOut: '/auth/signout',
   }
 }
 const handler = NextAuth(authOptions)

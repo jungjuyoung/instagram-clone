@@ -21,6 +21,7 @@ import Image from "next/image";
 import instagram from "@/assets/instagram.png";
 import arrowdown from "@/assets/arrowdown.png";
 import LoginButton from "./ui/LoginButton";
+import Avatar from "./Avatar";
 
 const menu = [
   { href: "/", icon: <HomeIcon />, clickedIcon: <HomeFillIcon /> },
@@ -33,6 +34,8 @@ const menu = [
 export default function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const user = session?.user;
+  console.log("Navbar user", user);
 
   return (
     <div className="max-w-screen-xl mx-auto">
@@ -72,6 +75,13 @@ export default function Navbar() {
                   </Link>
                 </li>
               ))}
+              {user && (
+                <li>
+                  <Link href={`/user/${user.username}`}>
+                    <Avatar image={user.image} />
+                  </Link>
+                </li>
+              )}
               <li>
                 {session ? (
                   <LoginButton text="Sign Out" onClick={() => signOut()} />
