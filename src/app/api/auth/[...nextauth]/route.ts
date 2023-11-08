@@ -21,7 +21,6 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session }) {
       const user = session?.user
-      console.log('route session', session)
       if (user) {
         session.user = {
           ...user,
