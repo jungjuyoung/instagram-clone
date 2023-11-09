@@ -26,7 +26,7 @@ const authOptions: NextAuthOptions = {
       //   return false
       // }
 
-      addUser({ id, name: name || '', email: email || `${name}@fakeemail.com`, username: email?.split('@')[0] })
+      addUser({ id, name: name || '', email: email || `${name}@fakeemail.com`, username: email ? email?.split('@')[0] : `${name?.trim()}` })
       return true
     },
     async session({ session }) {
