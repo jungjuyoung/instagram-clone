@@ -21,11 +21,12 @@ const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user: { id, name, image, email } }) {
-      if (!email) {
-        return false
-      }
+      console.log('id', id, 'name', name, 'email', email)
+      // if (!email) { // KaKao는 email이 없을 수 있음.
+      //   return false
+      // }
 
-      addUser({ id, name: name || '', email, username: email?.split('@')[0] })
+      addUser({ id, name: name || '', email: email || `${name}@fakeemail.com`, username: email?.split('@')[0] })
       return true
     },
     async session({ session }) {
