@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
-  console.log("HopePage session", session);
+  console.log("HopePage session", session, "user", user);
 
   if (!user) {
     redirect("/auth/signin");

@@ -18,7 +18,7 @@ export default function OAuthSigninPage({ providers, callbackUrl }: Props) {
         <div className="flex-col">
           {Object.values(providers).map(({ name, id }) => (
             <div key={name} className="relative w-[200px] h-[50px] mt-2">
-              <button onClick={() => signIn(id, {callbackUrl})}>
+              <button onClick={() => signIn(id, { callbackUrl })}>
                 <Image src={`/${id}.png`} alt={name} fill />
               </button>
             </div>
