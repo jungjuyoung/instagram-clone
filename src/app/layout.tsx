@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AuthContext from "@/context/AuthContext";
+import SWRContext from "@/context/SWRContext";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({
           <header className="sticky top-0 bg-white border-b shadow-sm">
             <Navbar />
           </header>
-          <main>{children}</main>
+          <main>
+            <SWRContext>{children}</SWRContext>
+          </main>
         </AuthContext>
       </body>
     </html>
