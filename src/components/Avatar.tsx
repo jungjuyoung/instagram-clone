@@ -1,17 +1,32 @@
+import { User } from "@/model/user";
+
 type Props = {
-  user: {
-    image?: string | null;
-    username: string;
-  };
+  user: User;
+  size: string;
+  highlight?: boolean;
 };
 
-export default function Avatar({ user }: Props) {
-  const image = user?.image;
-  console.log("Avatar user", user?.image);
+const getContainStyle = (size: string, highlight: boolean): string => {
+  const baseStyle =
+    "flex items-center justify-center w-9 h-9 p-[0.1rem] overflow-hidden rounded-full";
+  const highlightStyle = highlight
+    ? "bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300"
+    : "";
+  const sizeStyle = size === "small" ? "w-9 h-9" : "w-[68px] h-[68px]";
+
+  return `${baseStyle} ${highlightStyle} ${sizeStyle}`;
+};
+
+export default function Avatar({
+  user,
+  size = "small",
+  highlight = false,
+}: Props) {
+  const { username, image } = user;
   if (!image) {
-    const firstLetterOfUsername = user?.username;
+    const firstLetterOfUsername = username || "";
     return (
-      <div className="flex items-center justify-center w-9 h-9 p-[0.2rem] rounded-full overflow-hidden bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300">
+      <div className={getContainStyle(size, highlight)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <div className="flex items-center justify-center w-full h-full rounded-full bg-white">
           <strong>{firstLetterOfUsername[0].toLocaleUpperCase()}</strong>
@@ -20,12 +35,12 @@ export default function Avatar({ user }: Props) {
     );
   }
   return (
-    <div className="w-9 h-9 rounded-full overflow-hidden bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300">
+    <div className={getContainStyle(size, highlight)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={image ?? undefined}
         alt="user profile image"
-        className="rounded-full p-[0.2rem] object-cover"
+        className={getContainStyle(size, highlight)}
         referrerPolicy="no-referrer"
       />
     </div>

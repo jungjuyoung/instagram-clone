@@ -35,7 +35,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const user = session?.user;
-  console.log("Navbar user", user);
+  // console.log("Navbar user", user);
 
   return (
     <div className="max-w-screen-xl mx-auto">
@@ -78,7 +78,7 @@ export default function Navbar() {
               {user && (
                 <li>
                   <Link href={`/user/${user.username}`}>
-                    <Avatar user={user} />
+                    <Avatar user={user} size="small" highlight />
                   </Link>
                 </li>
               )}

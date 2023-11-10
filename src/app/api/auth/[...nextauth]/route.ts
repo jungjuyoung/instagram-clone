@@ -21,7 +21,7 @@ const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user: { id, name, image, email } }) {
-      console.log('id', id, 'name', name, 'email', email)
+      // console.log('id', id, 'name', name, 'email', email)
       // if (!email) { // KaKao는 email이 없을 수 있음.
       //   return false
       // }
@@ -30,7 +30,7 @@ const authOptions: NextAuthOptions = {
       return true
     },
     async session({ session }) {
-      console.log('session', session)
+      // console.log('session', session)
       const user = session?.user
       if (user) {
         session.user = {
