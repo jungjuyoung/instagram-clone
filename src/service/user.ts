@@ -1,3 +1,4 @@
+import { User } from "@/model/user";
 import { client } from "./sanity";
 
 type OAuthUser = {
@@ -20,4 +21,16 @@ export async function addUser({ id, username, email, name, image }: OAuthUser) {
     followers: [],
     bookmarks: []
   })
+}
+
+export async function getUserByUsername(username: string): Promise<User> {
+  return client.fetch(
+    `*[_type == "user" && username == "${username}"][0]{
+      ...,
+      "id":_id,
+      following[]->{username,image},
+      followers[]->{username,image},
+      "bookmarsk":bookmarsk[]->_id
+    }`,
+  )
 }
