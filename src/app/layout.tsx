@@ -24,7 +24,7 @@ export default function RootLayout({
           <header className="sticky top-0 bg-white border-b shadow-sm">
             <Navbar />
           </header>
-          <main>
+          <main className="w-full min-h-full flex justify-center bg-neutral-50">
             <SWRContext>{children}</SWRContext>
           </main>
         </AuthContext>
