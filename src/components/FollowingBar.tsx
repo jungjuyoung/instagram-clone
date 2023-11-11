@@ -1,10 +1,38 @@
 "use client";
+import { DetailUser } from "@/model/user";
+import Link from "next/link";
+import { PropagateLoader } from "react-spinners";
 import useSWR from "swr";
+import Avatar from "./Avatar";
 
 export default function FollowingBar({}) {
-  const { data, error, isLoading } = useSWR("/api/me");
-  console.log("isLoading", isLoading, "data", data, "error", error);
-  //2. backend에서 로그인된 사용자 정보를 이용해서 사용자 상세정보를 sanity에서 얻어옴. (followings)
-  //3. 컴포넌트에서 followings의 정보를 UI에 보여줌.
-  return <div>FollowingBar</div>;
+  const { data, error, isLoading } = useSWR<DetailUser>("/api/me");
+  const users = data?.following;
+
+  return (
+    <section>
+      {isLoading ? (
+        <PropagateLoader size={8} color="red" />
+      ) : (
+        !users || (users.length === 0 && <p>{`you don't have following`}</p>)
+      )}
+      {users && users.length > 0 && (
+        <ul>
+          {users.map(({ image, username }) => (
+            <li key={username}>
+              <Link href={`/user/${username}`}>
+                <Avatar
+                  image={image}
+                  username={username}
+                  size="medium"
+                  highlight
+                />
+                <p>{username}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
 }

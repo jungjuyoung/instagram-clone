@@ -1,7 +1,6 @@
 import { User } from "@/model/user";
 
-type Props = {
-  user: User;
+type Props = Pick<User, "username" | "image"> & {
   size?: string;
   highlight?: boolean;
 };
@@ -18,11 +17,11 @@ const getContainStyle = (size: string, highlight: boolean): string => {
 };
 
 export default function Avatar({
-  user,
+  image,
+  username,
   size = "small",
   highlight = false,
 }: Props) {
-  const { username, image } = user;
   if (!image) {
     const firstLetterOfUsername = username || "";
     return (
@@ -40,9 +39,9 @@ export default function Avatar({
     <div className={getContainStyle(size, highlight)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={image ?? undefined}
+        src={image}
         alt="user profile image"
-        className="rounded-full object-cover"
+        className="w-full h-full rounded-full object-cover"
         referrerPolicy="no-referrer"
       />
     </div>

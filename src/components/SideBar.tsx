@@ -5,11 +5,13 @@ type Props = {
   user: User;
 };
 export default function SideBar({ user }: Props) {
-  const { name, username } = user;
+  const { name, image, username } = user;
   return (
     <>
       <div className="flex items-center">
-        {name && <Avatar user={user} size="medium" highlight />}
+        {name && (
+          <Avatar image={image} username={username} size="medium" highlight />
+        )}
         <div className="ml-4">
           <p className="font-bold">{username}</p>
           <p className="text-lg text-neutral-500 leading-4">{name}</p>
