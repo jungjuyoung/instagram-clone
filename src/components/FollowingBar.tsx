@@ -13,9 +13,7 @@ export default function FollowingBar({}) {
     <section>
       {isLoading ? (
         <PropagateLoader size={8} color="red" />
-      ) : (
-        !users || (users.length === 0 && <p>{`you don't have following`}</p>)
-      )}
+      ) : (!users || users.length === 0) && <p>{`you don't have following`}</p>}
       {users && users.length > 0 && (
         <ul>
           {users.map(({ image, username }) => (
