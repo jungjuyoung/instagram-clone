@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="w-full overflow-auto">
         <AuthContext>
-          <header className="sticky top-0 bg-white border-b shadow-sm">
+          <header className="sticky top-0 bg-white border-b shadow-sm z-[1001]">
             <Navbar />
           </header>
           <main className="w-full min-h-full flex justify-center bg-neutral-50">
