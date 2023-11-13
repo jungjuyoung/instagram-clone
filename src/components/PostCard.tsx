@@ -14,7 +14,7 @@ export default function PostCard({ post }: Props) {
   return (
     <>
       <div>
-        <Avatar username={username} image={image} highlight />
+        <Avatar username={username} image={userImage} highlight />
         <span>{username}</span>
       </div>
       <Image
