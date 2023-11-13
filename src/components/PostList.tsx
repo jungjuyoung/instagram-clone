@@ -5,6 +5,7 @@ import useSWR from "swr";
 
 export default function PostList() {
   const { isLoading, data: posts, error } = useSWR<SimplePost[]>("/api/post");
+  console.log(posts);
   return (
     <div>
       {/* <PostCard data={data} /> */}
