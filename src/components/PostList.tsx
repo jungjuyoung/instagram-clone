@@ -11,14 +11,14 @@ export default function PostList() {
     <section>
       {isLoading && (
         <div className="text-center mt-32">
-          <GridSpinner />
+          <GridSpinner color="red" />
         </div>
       )}
       {posts && (
         <ul>
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <li key={post.id} className="mb-6">
-              <PostCard post={post} />{" "}
+              <PostCard post={post} priority={index < 2 ? true : false} />
             </li>
           ))}
         </ul>

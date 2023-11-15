@@ -7,9 +7,10 @@ import ActionBar from "./ActionBar";
 
 type Props = {
   post: SimplePost;
+  priority?: boolean;
 };
 
-export default function PostCard({ post }: Props) {
+export default function PostCard({ post, priority = false }: Props) {
   const { userImage, username, image, createdAt, likes, text } = post;
   return (
     <section className="rounded-md shadow-md border border-gray-200">
@@ -22,6 +23,7 @@ export default function PostCard({ post }: Props) {
         src={image}
         width={500}
         height={500}
+        priority={priority}
         alt={`photo by ${username}`}
       />
       <ActionBar
