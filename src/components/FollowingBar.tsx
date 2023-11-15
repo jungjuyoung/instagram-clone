@@ -32,7 +32,7 @@ export default function FollowingBar({}) {
               <Avatar
                 image={image}
                 username={username}
-                size="medium"
+                size="large"
                 highlight
               />
               <p className="w-full text-center text-sm text-ellipsis overflow-hidden">

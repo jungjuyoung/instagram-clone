@@ -1,14 +1,28 @@
 import { User } from "@/model/user";
 
+type AvatarSize = "small" | "medium" | "large";
 type Props = Pick<User, "username" | "image"> & {
-  size?: string;
+  size?: AvatarSize;
   highlight?: boolean;
 };
 
-const getContainStyle = (size: string, highlight: boolean): string => {
-  const baseStyle = `flex items-center justify-center ${
-    size === "small" ? "w-9 h-9" : "w-[68px] h-[68px]"
-  } p-[0.1rem] overflow-hidden rounded-full`;
+const getContainerImageSize = (size: AvatarSize = "small"): string => {
+  switch (size) {
+    case "small":
+      return "w-9 h-9";
+    case "medium":
+      return "w-[48px] h-[48px]";
+    case "large":
+      return "w-[68px] h-[68px]";
+  }
+};
+const getContainStyle = (
+  size: AvatarSize = "small",
+  highlight: boolean
+): string => {
+  const baseStyle = `flex items-center justify-center ${getContainerImageSize(
+    size
+  )} p-[0.1rem] overflow-hidden rounded-full`;
   const highlightStyle = highlight
     ? "bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300"
     : "";
@@ -19,7 +33,7 @@ const getContainStyle = (size: string, highlight: boolean): string => {
 export default function Avatar({
   image,
   username,
-  size = "small",
+  size,
   highlight = false,
 }: Props) {
   if (!image) {
@@ -41,7 +55,7 @@ export default function Avatar({
       <img
         src={image}
         alt="user profile image"
-        className="w-full h-full rounded-full object-cover"
+        className="w-full h-full rounded-full object-cover border-white border-2"
         referrerPolicy="no-referrer"
       />
     </div>
