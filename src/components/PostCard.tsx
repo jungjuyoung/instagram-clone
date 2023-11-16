@@ -10,6 +10,7 @@ import { useState } from "react";
 import Modal from "./ui/Modal";
 import PostModal from "./PostModal";
 import PostDetail from "./PostDetail";
+import PostUserAvatar from "./PostUserAvatar";
 
 type Props = {
   post: SimplePost;
@@ -22,16 +23,13 @@ export default function PostCard({ post, priority = false }: Props) {
 
   return (
     <section className="rounded-md shadow-md border border-gray-200">
-      <div className="flex items-center p-2">
-        <Avatar username={username} image={userImage} size="medium" highlight />
-        <span className="text-gray-900 font-bold ml-2">{username}</span>
-      </div>
+      <PostUserAvatar userImage={userImage} username={username} />
       <Image
         className="w-full object-cover aspect-square"
         src={image}
         width={500}
         height={500}
-        priority={priority}
+        priority
         alt={`photo by ${username}`}
         onClick={() => setOpenModal(true)}
       />
@@ -45,7 +43,7 @@ export default function PostCard({ post, priority = false }: Props) {
       {openModal && (
         <Modal>
           <PostModal onClose={() => setOpenModal(false)}>
-            <PostDetail post={post} />
+            <PostDetail post={post} priority={priority} />
           </PostModal>
         </Modal>
       )}
