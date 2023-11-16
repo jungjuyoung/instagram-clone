@@ -9,6 +9,12 @@ export default function PostModal({ onClose, children }: Props) {
     <section
       className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full bg-neutral-500/70 z-50"
       onClick={(e) => {
+        console.log(
+          "e.target: ",
+          e.target,
+          "e.currentTarget: ",
+          e.currentTarget
+        );
         if (e.target === e.currentTarget) {
           onClose();
         }

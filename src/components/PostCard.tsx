@@ -9,6 +9,7 @@ import ActionBar from "./ActionBar";
 import { useState } from "react";
 import Modal from "./ui/Modal";
 import PostModal from "./PostModal";
+import PostDetail from "./PostDetail";
 
 type Props = {
   post: SimplePost;
@@ -44,7 +45,7 @@ export default function PostCard({ post, priority = false }: Props) {
       {openModal && (
         <Modal>
           <PostModal onClose={() => setOpenModal(false)}>
-            포스트 상세페이지 모달!!!
+            <PostDetail post={post} />
           </PostModal>
         </Modal>
       )}
