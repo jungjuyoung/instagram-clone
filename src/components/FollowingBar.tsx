@@ -15,7 +15,7 @@ export default function FollowingBar({}) {
   ];
 
   return (
-    <section className="w-full flex items-center justify-center p-4 shadow-sm shadow-neutral-300 mb-4 rounded-lg min-h-[90px] overflow-x-auto">
+    <section className="w-full flex items-center justify-center p-4 shadow-sm shadow-neutral-300 mb-4 rounded-lg min-h-[90px] relative z-0 overflow-x-auto">
       {isLoading ? (
         <PropagateLoader size={8} color="red" />
       ) : (
