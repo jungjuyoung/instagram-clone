@@ -1,7 +1,7 @@
-import React from "react";
+import SearchUser from "@/components/SearchUser";
 
 const SearchPage = () => {
-  return <div>Search Page</div>;
+  return <SearchUser />;
 };
 
 export default SearchPage;
