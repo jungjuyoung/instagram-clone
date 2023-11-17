@@ -6,14 +6,16 @@ import useSWR from "swr";
 import { SearchInputIcon } from "./ui/icons";
 import GridSpinner from "./GridSpinner";
 import UserCard from "./UserCard";
+import useDebounce from "@/hook/useDebounce";
 
 export default function SearchUser() {
   const [keyword, setKeyword] = useState<string>("");
+  const debouncedKeyword = useDebounce(keyword);
   const {
     isLoading,
     data: users,
     error,
-  } = useSWR<ProfileUser[]>(`/api/search/${keyword}`);
+  } = useSWR<ProfileUser[]>(`/api/search/${debouncedKeyword}`);
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
