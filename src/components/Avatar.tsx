@@ -1,7 +1,7 @@
-import { User } from "@/model/user";
+import { AuthUser } from "@/model/user";
 
 type AvatarSize = "small" | "medium" | "large";
-type Props = Pick<User, "username" | "image"> & {
+type Props = Pick<AuthUser, "username" | "image"> & {
   size?: AvatarSize;
   highlight?: boolean;
 };
