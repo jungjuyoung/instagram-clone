@@ -19,8 +19,8 @@ export default async function userPage({ params: { username } }: Props) {
   // TODO: 하단구현: 3Tab (Post, likes, bookmarks)
 
   return (
-    <>
+    <section className="w-full">
       <UserProfile user={user} />
-    </>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 import { AuthUser } from "@/model/user";
 
-type AvatarSize = "small" | "medium" | "large";
+type AvatarSize = "small" | "medium" | "large" | "xlarge";
 type Props = Pick<AuthUser, "username" | "image"> & {
   size?: AvatarSize;
   highlight?: boolean;
@@ -14,6 +14,10 @@ const getContainerImageSize = (size: AvatarSize = "small"): string => {
       return "w-[48px] h-[48px]";
     case "large":
       return "w-[68px] h-[68px]";
+    case "xlarge":
+      return "w-[138px] h-[138px]";
+    default:
+      throw new Error(`UnSupported type size ${size}`);
   }
 };
 const getContainStyle = (

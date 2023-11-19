@@ -1,6 +1,6 @@
 export type AuthUser = {
   name: string
-  username: string
+  username?: string
   email?: string
   image?: string
 }

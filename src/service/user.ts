@@ -47,7 +47,7 @@ export async function searchUsers(keyword?: string) {
   ).then(users => users?.map((user: SearchUser) => ({ ...user, following: user.followers ?? 0, followers: user.followers ?? 0 })))
 }
 
-export async function getUserForProfile(username: string): Promise<AuthUser> {
+export async function getUserForProfile(username: string) {
   return client.fetch(
     `*[_type == "user" && username == "${username}"][0]{
       ...,
