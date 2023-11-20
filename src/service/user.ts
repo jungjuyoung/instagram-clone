@@ -30,7 +30,7 @@ export async function getUserByUsername(username: string): Promise<AuthUser> {
       "id":_id,
       following[]->{username,image},
       followers[]->{username,image},
-      "bookmarsk":bookmarsk[]->_id
+      "bookmarks":bookmarks[]->_id
     }`,
   )
 }
