@@ -25,8 +25,8 @@ export default function UserPosts({ user: { username } }: Props) {
             onClick={() => setQuery(type)}
             className={`mx-12 p-4 cursor-pointer ${type===query && 'font-bold border-t'} border-black`}
           >
-            <button>{icon}</button>
-            <span>{type}</span>
+            <button className="scale-150 md:scale-100">{icon}</button>
+            <span className="hidden md:inline">{type}</span>
           </li>
         ))}
       </ul>
