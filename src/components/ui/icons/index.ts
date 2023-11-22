@@ -15,3 +15,4 @@ export { default as CloseIcon } from './CloseIncon'
 export { default as BookmarkIcon } from './BookmarkIcon';
 export { default as BookmarkFillIcon } from './BookmarkFillIcon';
 export { default as SmileIcon } from './SmileIcon';
+export { default as PostIcon } from './PostIcon';

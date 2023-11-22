@@ -10,15 +10,17 @@ type Props = {
 };
 
 export default async function userPage({ params: { username } }: Props) {
-  const user = await getUserForProfile(username);
+  const decodeUsername = decodeURI(username);
+  const user = await getUserForProfile(decodeUsername);
+  // console.log("userPage user", decodeUsername);
   if (!user) {
     notFound();
   }
 
   return (
-    <>
+    <section className="w-full">
       <UserProfile user={user} />
       <UserPosts user={user} />
-    </>
+    </section>
   );
 }

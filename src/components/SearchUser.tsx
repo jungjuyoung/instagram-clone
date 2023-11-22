@@ -3,7 +3,6 @@
 import { SearchUser } from "@/model/user";
 import { FormEvent, useState } from "react";
 import useSWR from "swr";
-import { SearchInputIcon } from "./ui/icons";
 import GridSpinner from "./GridSpinner";
 import UserCard from "./UserCard";
 import useDebounce from "@/hook/useDebounce";

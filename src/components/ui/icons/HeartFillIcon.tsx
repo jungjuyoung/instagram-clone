@@ -1,4 +1,7 @@
 import { AiFillHeart } from "react-icons/ai";
-export default function HeartFillIcon() {
-  return <AiFillHeart className="w-7 h-7" />;
+type Props = {
+  className?: string;
+};
+export default function HeartFillIcon({ className }: Props) {
+  return <AiFillHeart className={className || "w-7 h-7"} />;
 }

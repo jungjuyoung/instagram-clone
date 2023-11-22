@@ -44,7 +44,7 @@ export async function searchUsers(keyword?: string) {
       "followers": count(followers),
       
     }`
-  ).then(users => users?.map((user: SearchUser) => ({ ...user, following: user.followers ?? 0, followers: user.followers ?? 0 })))
+  ).then(users => users?.map((user: SearchUser) => ({ ...user, following: user?.followers ?? 0, followers: user?.followers ?? 0 })))
 }
 
 export async function getUserForProfile(username: string) {
@@ -56,5 +56,5 @@ export async function getUserForProfile(username: string) {
       "followers": count(followers),
       "posts":count(*[_type=="post" && author->username=="${username}"])
     }`,
-  ).then(user => ({ ...user, following: user.following ?? 0, followers: user.followers ?? 0, posts: user.posts ?? 0 }))
+  ).then(user => ({ ...user, following: user?.following ?? 0, followers: user?.followers ?? 0, posts: user?.posts ?? 0 }))
 }

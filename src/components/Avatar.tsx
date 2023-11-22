@@ -41,13 +41,17 @@ export default function Avatar({
   highlight = false,
 }: Props) {
   if (!image) {
-    const firstLetterOfUsername = username || "";
+    const firstLetterOfUsername = username && username[0].toLocaleUpperCase();
     return (
       <div className={getContainStyle(size, highlight)}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <div className="flex items-center justify-center w-full h-full rounded-full bg-white">
-          <strong className="text-gray-800">
-            {firstLetterOfUsername[0].toLocaleUpperCase()}
+          <strong
+            className={`text-gray-800 ${
+              size === "xlarge" ? 'text-2xl' : 'text-base'
+            }`}
+          >
+            {firstLetterOfUsername}
           </strong>
         </div>
       </div>
