@@ -1,7 +1,7 @@
 import { AiFillHome } from "react-icons/ai";
 type Props = {
-  classname?: string;
+  className?: string;
 };
-export default function HomeFillIcon({ classname }: Props) {
-  return <AiFillHome className="w-7 h-7" />;
+export default function HomeFillIcon({ className }: Props) {
+  return <AiFillHome className={className || "w-7 h-7"} />
 }

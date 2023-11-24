@@ -19,7 +19,8 @@ const getUser = cache(async (decodeUsername: string) =>
 export default async function userPage({ params: { username } }: Props) {
   const decodeUsername = decodeURI(username);
   const user = await getUser(decodeUsername);
-  // console.log("userPage user", decodeUsername);
+  // console.log("userPage user", username);
+  // console.log("userPage user decodedUsername: ", decodeUsername);
   if (!user) {
     notFound();
   }
