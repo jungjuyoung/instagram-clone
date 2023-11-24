@@ -10,6 +10,7 @@ export default function ToggleButton({
   onIcon,
   offIcon,
 }: Props) {
+  // console.log(onToggle);
   return (
     <button onClick={() => onToggle(!toggled)}>
       {toggled ? onIcon : offIcon}
