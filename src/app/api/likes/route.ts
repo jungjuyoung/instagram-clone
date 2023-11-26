@@ -7,9 +7,8 @@ export async function PUT(req: NextRequest) {
   const session = await getServerSession(authOptions)
   const user = session?.user
   if (!user) return new NextResponse('Authentication Error', { status: 401 })
-
+  // console.log('[PUT] req: ', JSON.stringify(await req.json(), null, 4)) <- 이 route를 호출할때 전달하는 객체의 키 그대로 옴.
   const { id, liked } = await req.json();
-  // console.log('id', id, 'liked', liked)
   if (!id || liked === undefined) {
     return new NextResponse('Bad request', { status: 400 })
   }
