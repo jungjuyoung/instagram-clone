@@ -33,12 +33,7 @@ export default function PostCard({ post, priority = false }: Props) {
         alt={`photo by ${username}`}
         onClick={() => setOpenModal(true)}
       />
-      <ActionBar
-        likes={likes}
-        username={username}
-        text={text}
-        createdAt={createdAt}
-      />
+      <ActionBar post={post} />
       <CommentForm />
       {openModal && (
         <Modal>
