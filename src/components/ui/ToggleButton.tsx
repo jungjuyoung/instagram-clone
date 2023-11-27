@@ -17,7 +17,11 @@ export default function ToggleButton({
   //   onToggle
   // );
   return (
-    <button onClick={() => onToggle(!toggled)}>
+    <button
+      onClick={() => {
+        onToggle(!toggled);
+      }}
+    >
       {toggled ? onIcon : offIcon}
     </button>
   );

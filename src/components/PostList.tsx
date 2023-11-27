@@ -5,7 +5,7 @@ import usePosts from "@/hook/usePosts";
 
 export default function PostList() {
   const { isLoading, posts, error } = usePosts();
-  // console.log(posts);
+  // console.log("Postlist posts", posts);
   return (
     <section>
       {isLoading && (

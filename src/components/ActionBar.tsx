@@ -35,14 +35,14 @@ export default function ActionBar({ post }: Props) {
         <ToggleButton
           toggled={liked}
           onToggle={handleLike}
-          onIcon={<HeartIcon />}
-          offIcon={<HeartFillIcon />}
+          onIcon={<HeartFillIcon />}
+          offIcon={<HeartIcon />}
         />
         <ToggleButton
           toggled={bookmarked}
           onToggle={setBookmarked}
-          onIcon={<BookmarkIcon />}
-          offIcon={<BookmarkFillIcon />}
+          onIcon={<BookmarkFillIcon />}
+          offIcon={<BookmarkIcon />}
         />
       </div>
       <div className="px-4 py-1">
