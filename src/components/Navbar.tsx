@@ -24,11 +24,11 @@ import LoginButton from "./ui/LoginButton";
 import Avatar from "./Avatar";
 
 const menu = [
-  { href: "/", icon: <HomeIcon />, clickedIcon: <HomeFillIcon /> },
-  { href: "/search", icon: <SearchIcon />, clickedIcon: <SearchFillIcon /> },
-  { href: "/new", icon: <NewIcon />, clickedIcon: <NewFillIcon /> },
-  { href: "/message", icon: <MessageIcon />, clickedIcon: <MessageFillIcon /> },
-  { href: "/likes", icon: <HeartIcon />, clickedIcon: <HeartFillIcon /> },
+  { href: "/", offIcon: <HomeIcon />, onIcon: <HomeFillIcon /> },
+  { href: "/search", offIcon: <SearchIcon />, onIcon: <SearchFillIcon /> },
+  { href: "/new", offIcon: <NewIcon />, onIcon: <NewFillIcon /> },
+  { href: "/message", offIcon: <MessageIcon />, onIcon: <MessageFillIcon /> },
+  { href: "/likes", offIcon: <HeartIcon />, onIcon: <HeartFillIcon /> },
 ];
 
 export default function Navbar() {
@@ -62,7 +62,7 @@ export default function Navbar() {
         <div className="">
           <nav>
             <ul className="flex space-x-4 items-center p-4">
-              {menu.map(({ href, clickedIcon, icon }) => (
+              {menu.map(({ href, offIcon, onIcon }) => (
                 <li
                   key={href}
                   className={`${
@@ -70,7 +70,7 @@ export default function Navbar() {
                   }`}
                 >
                   <Link href={href}>
-                    {pathname === href ? clickedIcon : icon}
+                    {pathname === href ? onIcon : offIcon}
                   </Link>
                 </li>
               ))}
