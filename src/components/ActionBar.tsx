@@ -21,7 +21,7 @@ export default function ActionBar({ post }: Props) {
   const { setLike } = usePosts();
   const { user, setBookmark } = useMe();
   const bookmarks = user?.bookmarks ?? [];
-
+  // console.log("ActionBar bookmarks",bookmarks);
   const liked = user ? likes.includes(user?.username as string) : false;
   const bookmarked = user ? bookmarks.includes(id) : false;
 

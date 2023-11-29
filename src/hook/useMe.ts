@@ -14,7 +14,8 @@ export default function useMe() {
 
   const setBookmark = (postId: string, bookmark: boolean) => {
     if (!user) return
-    const bookmarks = user?.bookmarks ?? [];
+    const { bookmarks } = user;
+    // console.log('useMe user', user, 'bookmarks: ', bookmarks)
     const newUser = {
       ...user,
       bookmarks: bookmark ? [...bookmarks, postId] : bookmarks.filter(bookmark => bookmark !== postId)

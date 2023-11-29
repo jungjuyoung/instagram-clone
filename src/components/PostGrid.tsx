@@ -13,7 +13,7 @@ export default function PostGrid({ username, query }: Props) {
     isLoading,
     error,
   } = useSWR<SimplePost[]>(`/api/users/${username}/${query}`);
-  console.log("posts", posts);
+  // console.log("posts", posts);
   return (
     <div className="w-full text-center">
       {isLoading && <GridSpinner />}
