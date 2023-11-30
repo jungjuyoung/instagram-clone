@@ -18,7 +18,7 @@ type Props = {
 };
 
 export default function PostCard({ post, priority = false }: Props) {
-  const { userImage, username, image, createdAt, likes, text } = post;
+  const { userImage, username, image, text, comments } = post;
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -33,7 +33,18 @@ export default function PostCard({ post, priority = false }: Props) {
         alt={`photo by ${username}`}
         onClick={() => setOpenModal(true)}
       />
-      <ActionBar post={post} />
+      <ActionBar post={post}>
+        <p>
+          <span className="font-bold mr-3">{username}</span>
+          {text}
+        </p>
+        {comments > 1 && (
+          <button
+            className="font-bold my-2 text-sky-500"
+            onClick={() => setOpenModal(true)}
+          >{`view all ${comments} comments`}</button>
+        )}
+      </ActionBar>
       <CommentForm />
       {openModal && (
         <Modal>
