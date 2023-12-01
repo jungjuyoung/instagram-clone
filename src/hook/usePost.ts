@@ -9,7 +9,7 @@ const addComment = async (id: string, comment: string) => {
 }
 export default function useFullPost(postId: string) {
   const { data: post, isLoading, error, mutate } = useSWR<FullPost>(`/api/post/${postId}`)
-  console.log('useFullPost hooks post: ', post)
+  // console.log('useFullPost hooks post: ', post)
   const postComment = (comment: Comment) => {
     if (!post) return
     const newPost = { ...post, comments: [...post.comments, comment] }
