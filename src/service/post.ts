@@ -1,5 +1,5 @@
 import { client, urlFor } from "./sanity";
-import { SimplePost } from '@/model/post';
+import { SimplePost, FullPost } from '@/model/post';
 
 const SimplePostProjection = `
   ...,
@@ -36,7 +36,7 @@ export async function getPost(id: string) {
       "id":_id,
       "createdAt":_createdAt
     }`
-  ).then(mapPosts)
+  ).then(mapPost)
 }
 
 export async function getPostsOf(username: string) {
@@ -62,6 +62,9 @@ export async function getSavedPostsOf(username: string) {
   ).then(mapPosts)
 }
 
+const mapPost = (post: FullPost) => {
+  return post
+}
 
 const mapPosts = (posts: SimplePost[]) => {
   return posts.map((post: SimplePost) => ({ ...post, likes: post.likes ?? [], image: urlFor(post.image) }))
