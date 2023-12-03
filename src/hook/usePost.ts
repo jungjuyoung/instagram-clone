@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { FullPost, Comment } from "@/model/post"
 import useSWR, { useSWRConfig } from "swr"
 
@@ -11,7 +12,7 @@ export default function useFullPost(postId: string) {
   const { data: post, isLoading, error, mutate } = useSWR<FullPost>(`/api/post/${postId}`)
   const { mutate: globalMutate } = useSWRConfig()
   // console.log('useFullPost hooks post: ', post)
-  const postComment = (comment: Comment) => {
+  const postComment = useCallback((comment: Comment) => {
     if (!post) return
     const newPost = { ...post, comments: [...post.comments, comment] }
 
@@ -21,7 +22,7 @@ export default function useFullPost(postId: string) {
       revalidate: false,
       rollbackOnError: true
     }).then(() => globalMutate('/api/post'))
-  }
+  }, [post, globalMutate, mutate])
 
   return {
     post,

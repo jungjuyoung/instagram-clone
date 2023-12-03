@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { SimplePost, Comment } from "@/model/post"
 import useSWR from "swr"
 
@@ -18,23 +19,18 @@ export default function usePosts() {
   const { data: posts, isLoading, error, mutate } = useSWR<SimplePost[]>('/api/post')
   // console.log('useSWR/api/post')
 
-  const setLike = (post: SimplePost, username: string, liked: boolean) => {
+  const setLike = useCallback((post: SimplePost, username: string, liked: boolean) => {
     const newPost = { ...post, likes: liked ? [...post.likes, username] : post.likes.filter(p => p !== username) }
     const newPosts = posts?.map(p => p.id === post.id ? newPost : p)
-    // console.log('newPosts: ', newPosts)
-    // fetch("/api/likes", {
-    //   method: "PUT",
-    //   body: JSON.stringify({ id: post.id, liked }),
-    // })//
-    // .then(() => mutate("/api/post"));
     return mutate(updateLike(post.id, liked), {
       optimisticData: newPosts,
       populateCache: false,
       revalidate: false,
       rollbackOnError: true
     })
-  }
-  const postComment = (post: SimplePost, comment: Comment) => {
+  }, [posts, mutate]);
+
+  const postComment = useCallback((post: SimplePost, comment: Comment) => {
     const newPost = { ...post, comments: post.comments + 1 }
     const newPosts = posts?.map(p => p.id === post.id ? newPost : p)
     return mutate(addComment(post.id, comment.comment), {
@@ -43,7 +39,7 @@ export default function usePosts() {
       revalidate: false,
       rollbackOnError: true
     })
-  }
+  }, [posts, mutate])
 
   return {
     posts,
