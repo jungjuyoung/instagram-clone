@@ -22,10 +22,11 @@ export default function ActionBar({ post, children, onComment }: Props) {
   const { id, likes, createdAt } = post;
   const { setLike } = usePosts();
   const { user, setBookmark } = useMe();
-  const bookmarks = user?.bookmarks ?? [];
-  // console.log("ActionBar bookmarks",bookmarks);
-  const liked = user ? likes.includes(user?.username as string) : false;
-  const bookmarked = user ? bookmarks.includes(id) : false;
+
+  const liked = user ? likes.includes(user.username as string) : false;
+  const bookmarked = user?.bookmarks.includes(id) ?? false;
+
+  // console.log("ActionBar bookmarked : ", user?.bookmarks);
 
   const handleLike = (liked: boolean) => {
     user && setLike(post, user?.username as string, liked);
@@ -36,7 +37,12 @@ export default function ActionBar({ post, children, onComment }: Props) {
   };
 
   const handlePostComment = (comment: string) => {
-    user && onComment({ comment, username: user.username as string, image: user.image });
+    user &&
+      onComment({
+        comment,
+        username: user.username as string,
+        image: user.image,
+      });
   };
   return (
     <>

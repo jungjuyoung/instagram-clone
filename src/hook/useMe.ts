@@ -19,10 +19,11 @@ const updateFollow = async (targetId: string, follow: boolean) => {
 export default function useMe() {
   const { data: user, isLoading, error, mutate } = useSWR<HomeUser>('/api/me')
   // console.log('useSWR/api/me)
+  // console.log('useMe user: ', user)
 
   const setBookmark = useCallback((postId: string, bookmark: boolean) => {
     if (!user) return
-    const { bookmarks } = user;
+    const bookmarks = user.bookmarks;
     // console.log('useMe user', user, 'bookmarks: ', bookmarks)
     const newUser = {
       ...user,
@@ -38,7 +39,7 @@ export default function useMe() {
 
   const toggleFollow = useCallback((targetId: string, follow: boolean) => {
     return mutate(updateFollow(targetId, follow), {
-      populateCache:false
+      populateCache: false
     })
   }, [mutate])
 
