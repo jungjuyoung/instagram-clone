@@ -18,7 +18,7 @@ const addComment = async (id: string, comment: string) => {
 }
 export default function usePosts() {
   const cacheKeys = useCacheKeys()
-  console.log(cacheKeys.postsKey)
+  // console.log(cacheKeys.postsKey)
   const { data: posts, isLoading, error, mutate } = useSWR<SimplePost[]>(cacheKeys.postsKey)
   // console.log('useSWR/api/post')
 

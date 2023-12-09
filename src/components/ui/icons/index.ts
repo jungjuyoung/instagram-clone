@@ -16,3 +16,4 @@ export { default as BookmarkIcon } from './BookmarkIcon';
 export { default as BookmarkFillIcon } from './BookmarkFillIcon';
 export { default as SmileIcon } from './SmileIcon';
 export { default as PostIcon } from './PostIcon';
+export { default as FilesIcon } from './FilesIcon';
