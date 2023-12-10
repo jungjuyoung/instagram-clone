@@ -4,7 +4,7 @@ import { AuthUser } from "@/model/user";
 import PostUserAvatar from "./PostUserAvatar";
 import { FilesIcon } from "./ui/icons";
 import Button from "./ui/Button";
-import { useState } from "react";
+import { useState, ChangeEvent, DragEvent, FormEvent } from "react";
 
 type Props = {
   user: AuthUser;
@@ -15,31 +15,31 @@ export default function NewPost({ user: { username, image } }: Props) {
   const [file, setFile] = useState<File>();
   // console.log("NewPost username: ", username, "image: ", image);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const files = e.target?.files;
     if (files && files[0]) {
       setFile(files[0]);
-      console.log(files[0]);
+      // console.log(files[0]);
     }
   };
-  const handleDrag = (e: React.DragEvent) => {
+  const handleDrag = (e: DragEvent) => {
     if (e.type === "dragenter") {
       setDragging(true);
     } else if (e.type === "dragleave") {
       setDragging(false);
     }
   };
-  const handleDragOver = (e: React.DragEvent) => {
+  const handleDragOver = (e: DragEvent) => {
     e.preventDefault();
   };
-  const handleDrop = (e: React.DragEvent) => {
+  const handleDrop = (e: DragEvent) => {
     e.preventDefault();
     setDragging(false);
     const files = e.dataTransfer?.files;
     if (files && files[0]) {
       setFile(files[0]);
-      console.log(files[0]);
+      // console.log(files[0]);
     }
   };
   return (
