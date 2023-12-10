@@ -13,8 +13,9 @@ type Props = {
 export default function NewPost({ user: { username, image } }: Props) {
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState<File>();
+  // console.log("NewPost username: ", username, "image: ", image);
 
-  const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const files = e.target?.files;
     if (files && files[0]) {
@@ -22,17 +23,17 @@ export default function NewPost({ user: { username, image } }: Props) {
       console.log(files[0]);
     }
   };
-  const handleDrag = (e:DragEvent<HTMLLabelElement>) => {
+  const handleDrag = (e: React.DragEvent) => {
     if (e.type === "dragenter") {
       setDragging(true);
     } else if (e.type === "dragleave") {
       setDragging(false);
     }
   };
-  const handleDragOver = (e:DragEvent<HTMLLabelElement>) => {
+  const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
   };
-  const handleDrop = (e:DragEvent<HTMLLabelElement>) => {
+  const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setDragging(false);
     const files = e.dataTransfer?.files;
@@ -43,7 +44,7 @@ export default function NewPost({ user: { username, image } }: Props) {
   };
   return (
     <section>
-      <PostUserAvatar username={username as string} image={image ?? ""} />
+      <PostUserAvatar username={username ?? ""} userImage={image ?? ""} />
       <form>
         <input
           className="hidden"

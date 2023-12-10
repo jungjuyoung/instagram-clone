@@ -6,7 +6,7 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata: Metadata = {
   title: "New Post",
-  description: "create new post",
+  description: "create a new post",
 };
 const NewPage = async () => {
   const session = await getServerSession(authOptions);

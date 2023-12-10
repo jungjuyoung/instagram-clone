@@ -13,7 +13,6 @@ export default function PostDetail({ post, priority = false }: Props) {
   const { userImage, username, id, image } = post;
   const { post: data, postComment } = useFullPost(id);
   const comments = data?.comments;
-
   return (
     <section className="flex w-full h-full">
       <div className="relative basis-3/5">
