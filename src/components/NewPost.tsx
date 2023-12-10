@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
+import { useState, ChangeEvent, DragEvent, FormEvent } from "react";
 import { AuthUser } from "@/model/user";
 import PostUserAvatar from "./PostUserAvatar";
 import { FilesIcon } from "./ui/icons";
 import Button from "./ui/Button";
-import { useState, ChangeEvent, DragEvent, FormEvent } from "react";
 
 type Props = {
   user: AuthUser;
