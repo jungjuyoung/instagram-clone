@@ -33,6 +33,7 @@ export default function NewPost({ user: { username, image } }: Props) {
     }
   };
   const handleDrag = (e: DragEvent) => {
+    // console.log('e.tyep: ' ,e.type);
     if (e.type === "dragenter") {
       setDragging(true);
     } else if (e.type === "dragleave") {
@@ -41,9 +42,11 @@ export default function NewPost({ user: { username, image } }: Props) {
   };
   const handleDragOver = (e: DragEvent) => {
     e.preventDefault();
+    // console.log('e.type: ',e.type)
   };
   const handleDrop = (e: DragEvent) => {
     e.preventDefault();
+    // console.log('e.type: ',e.type)
     setDragging(false);
     const files = e.dataTransfer?.files;
     if (files && files[0]) {
@@ -58,7 +61,8 @@ export default function NewPost({ user: { username, image } }: Props) {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("text", textRef.current?.value ?? "");
-    
+    // console.log("handleSubmit textRef:", textRef);
+
     fetch("/api/post", { method: "POST", body: formData }) //
       .then((res) => {
         if (!res.ok) {

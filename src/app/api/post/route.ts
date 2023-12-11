@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
   const formData = await req.formData()
   const text = formData.get('text')?.toString()
   const file = formData.get('file') as Blob
+  // console.log('route text: ', text, 'file:', file, 'formData: ', formData)
 
   if (!text || !file) return new NextResponse('Bad Request', { status: 400 })
 
