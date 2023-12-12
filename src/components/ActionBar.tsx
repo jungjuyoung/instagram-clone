@@ -22,9 +22,10 @@ export default function ActionBar({ post, children, onComment }: Props) {
   const { id, likes, createdAt } = post;
   const { setLike } = usePosts();
   const { user, setBookmark } = useMe();
+  const bookmarks = user?.bookmarks ?? [];
 
   const liked = user ? likes.includes(user.username as string) : false;
-  const bookmarked = user?.bookmarks.includes(id) ?? false;
+  const bookmarked = user ? bookmarks.includes(id) : false;
 
   // console.log("ActionBar bookmarked : ", user?.bookmarks);
 
