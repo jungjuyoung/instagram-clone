@@ -24,11 +24,11 @@ import LoginButton from "./ui/LoginButton";
 import Avatar from "./Avatar";
 
 const menu = [
-  { href: "/", offIcon: <HomeIcon />, onIcon: <HomeFillIcon /> },
-  { href: "/search", offIcon: <SearchIcon />, onIcon: <SearchFillIcon /> },
-  { href: "/new", offIcon: <NewIcon />, onIcon: <NewFillIcon /> },
-  { href: "/message", offIcon: <MessageIcon />, onIcon: <MessageFillIcon /> },
-  { href: "/likes", offIcon: <HeartIcon />, onIcon: <HeartFillIcon /> },
+  { href: "/", offIcon: <HomeIcon />, onIcon: <HomeFillIcon />,title:'Home' },
+  { href: "/search", offIcon: <SearchIcon />, onIcon: <SearchFillIcon />,title:'Search user' },
+  { href: "/new", offIcon: <NewIcon />, onIcon: <NewFillIcon /> ,title:'New post'},
+  { href: "/message", offIcon: <MessageIcon />, onIcon: <MessageFillIcon />,title:'Message' },
+  { href: "/likes", offIcon: <HeartIcon />, onIcon: <HeartFillIcon /> ,title:'Liked'},
 ];
 
 export default function Navbar() {
@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center h-16 px-2">
         <div className="flex">
           <div className="w-28">
-            <Link href="/">
+            <Link href="/" aria-label="home">
               <Image src={instagram} alt="instagram logo" />
             </Link>
           </div>
@@ -62,14 +62,14 @@ export default function Navbar() {
         <div className="">
           <nav>
             <ul className="flex space-x-4 items-center p-4">
-              {menu.map(({ href, offIcon, onIcon }) => (
+              {menu.map(({ href, offIcon, onIcon, title }) => (
                 <li
                   key={href}
                   className={`${
                     href === "/new" ? "sm:flex" : "hidden sm:flex"
                   }`}
                 >
-                  <Link href={href}>
+                  <Link href={href} aria-label={title}>
                     {pathname === href ? onIcon : offIcon}
                   </Link>
                 </li>
